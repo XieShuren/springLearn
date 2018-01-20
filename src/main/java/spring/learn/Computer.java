@@ -10,5 +10,4 @@ public class Computer implements Item{
 		System.out.println("my name is Computer");
 	}
 	
-	
 }
