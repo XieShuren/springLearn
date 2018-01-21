@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class CondtionConfig {
 
 	@Bean
-	@XieShuren("ds")
+	@XieShuren("dsfds")
 	@Conditional(StudentInitCondition.class)
 	public Student getStudent() {
 		Student student = new Student();
