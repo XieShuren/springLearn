@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	<!--  <context:component-scan base-package="spring.learn"></context:component-scan>-->
+	<!--  <bean id="computer" class="spring.learn.Computer">
+		<constructor-arg value = "1"></constructor-arg>
+		<constructor-arg>
+			<list>
+				<value>aaaaa1</value>
+				<value>aaaaa2</value>
+				<value>aaaaa3</value>
+				<value>aaaaa4</value>
+			</list>
+		</constructor-arg>
+	</bean>
+	<bean id="company" class="spring.learn.Company" >
+		<constructor-arg ref="computer"></constructor-arg>
+	</bean>
+	-->
+	<bean id="computer" class="spring.learn.Computer">
+		<property name="id" value="2"></property>
+		<property name="userNames" ref="userNamesList"></property>
+	</bean>
+	
+	<bean id="company" class="spring.learn.Company" p:computer-ref="computer">
+	</bean>
+	
+	<util:list id="userNamesList">
+		<value>aaaaa1</value>
+		<value>aaaaa2</value>
+		<value>aaaaa3</value>
+		<value>aaaaa4</value>
+	</util:list>
+</beans>
