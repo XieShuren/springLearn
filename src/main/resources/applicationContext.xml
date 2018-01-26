@@ -38,4 +38,10 @@
 		<value>aaaaa3</value>
 		<value>aaaaa4</value>
 	</util:list>
+	
+	<context:property-placeholder location="app.properties" file-encoding="utf-8"/>
+	
+	<bean id="school" class="spring.di.property.School" c:_0="1" c:_1="${school.address}" c:_2="${school.name}">
+
+	</bean>
 </beans>
