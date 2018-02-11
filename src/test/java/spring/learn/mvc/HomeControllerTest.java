@@ -28,7 +28,7 @@ public class HomeControllerTest {
 	public void testHomePage() throws Exception {
 		HomeController homeController = new HomeController(null);
 		MockMvc mockMvc = standaloneSetup(homeController).build();
-		mockMvc.perform(get("/home/hello")).andExpect(view().name("home"));
+		mockMvc.perform(get("/hello")).andExpect(view().name("home"));
 	}
 	
 	@Test
@@ -38,11 +38,22 @@ public class HomeControllerTest {
 		when(userRepository.userList()).thenReturn(expectedUsers);
 		HomeController homeController = new HomeController(userRepository);
 		MockMvc mockMvc = standaloneSetup(homeController).build();
-		mockMvc.perform(get("/home/list")).andExpect(model().attributeExists("beanList"))
+		mockMvc.perform(get("/list")).andExpect(model().attributeExists("beanList"))
 											.andExpect(model().attribute("beanList", hasItems(createUsers().toArray())))
 											.andExpect(view().name("view"));
 	}
 	
+	@Test
+	public void testUsersWithIndex() throws Exception {
+		UserRepository userRepository = mock(UserRepository.class);
+		List<User> expectedUsers = createUsers();
+		when(userRepository.userList(10, 20)).thenReturn(expectedUsers);
+		HomeController homeController = new HomeController(userRepository);
+		MockMvc mockMvc = standaloneSetup(homeController).build();
+		mockMvc.perform(get("/listWithIndex?start=10&end=20")).andExpect(model().attributeExists("beanList"))
+											.andExpect(model().attribute("beanList", hasItems(expectedUsers.toArray())))
+											.andExpect(view().name("view"));
+	}
 	private List<User> createUsers() {
 		return Lists.newArrayList(new User(1, "小明"), new User(2, "小芳"), new User(3, "小杰"));
 	}
