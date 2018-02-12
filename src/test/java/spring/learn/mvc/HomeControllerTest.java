@@ -54,6 +54,14 @@ public class HomeControllerTest {
 											.andExpect(model().attribute("beanList", hasItems(expectedUsers.toArray())))
 											.andExpect(view().name("view"));
 	}
+	
+	@Test
+	public void testUserWithId() throws Exception{
+		HomeController homeController = new HomeController(null);
+		MockMvc mockMvc = standaloneSetup(homeController).build();
+		mockMvc.perform(get("/listWithId/-1")).andExpect(view().name("view")).andExpect(model().attributeExists("beanList")).andExpect(model().attribute("beanList", hasItems(new User(234, "小偶"))));
+	}
+	
 	private List<User> createUsers() {
 		return Lists.newArrayList(new User(1, "小明"), new User(2, "小芳"), new User(3, "小杰"));
 	}
