@@ -13,5 +13,9 @@
     <c:forEach items="${beanList}" var="bean">
     	<p><c:out value="${bean.id}"></c:out>:<c:out value="${bean.name}"></c:out></p>
     </c:forEach>
+      <form action='<%=request.getContextPath()%>/logout' method='POST'>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<input type="submit" value="Logout"/>
+</form>
 </body> 
 </html>

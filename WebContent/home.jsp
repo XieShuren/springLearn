@@ -9,14 +9,20 @@
     <title>Login</title> 
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/home.css"/> 
 </head> 
+
+
 <body> 
     <div id="login"> 
         <h1>Login</h1> 
-        <form method="post"> 
-            <input type="text" required="required" placeholder="用户名" name="u"></input> 
-            <input type="password" required="required" placeholder="密码" name="p"></input> 
-            <button class="but" type="submit">登录</button> 
-        </form> 
+       <form name='f' action='<%=request.getContextPath()%>/login' method='POST'>
+	<table>
+		<tr><td>User:</td><td><input type='text' name='username' value=''></td></tr>
+		<tr><td>Password:</td><td><input type='password' name='password'/></td></tr>
+		<tr><td>Remember me:</td><td><input type="checkbox" id="remember_me" name="remember-me"/></td></tr>
+		<tr><td colspan='2'><input name="submit" type="submit" value="Login"/></td></tr>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	</table>
+</form>
     </div> 
 </body> 
 </html>
