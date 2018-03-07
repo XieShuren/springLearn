@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class QualifierTest {
 	
 	@Autowired
+	@Healthable
+	@Heated
 	private Food[] foods;
 	
 	@Test

@@ -1,5 +1,9 @@
 package spring.mvc;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +38,19 @@ public class HomeController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String users(Model model) {
 		List<User> userList = repository.userList();
+		try {
+			Connection connection = repository.getTemplate().getDataSource().getConnection();
+			Statement stat = connection.createStatement();
+			ResultSet resultSet = stat.executeQuery("select password from users");
+			while(resultSet.next()) {
+				String pwd = resultSet.getString("password");
+				System.out.println(pwd);
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		model.addAttribute("beanList", userList);
 		return "view";
 	}
