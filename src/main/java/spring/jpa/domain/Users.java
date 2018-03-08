@@ -3,6 +3,8 @@ package spring.jpa.domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 @Entity
 public class Users {
 
@@ -14,6 +16,19 @@ public class Users {
 	private String address;
 	
 	private String password;
+
+	
+	public Users() {
+		super();
+	}
+
+	public Users(int id, String name, String address, String password) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.password = password;
+	}
 
 	public int getId() {
 		return id;
@@ -45,6 +60,12 @@ public class Users {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return ToStringBuilder.reflectionToString(this);
 	}
 	
 }

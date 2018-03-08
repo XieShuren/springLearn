@@ -1,17 +1,27 @@
 package spring.jpa;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import javax.transaction.TransactionManager;
+import javax.transaction.Transactional;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
+
 @Configuration
+@ComponentScan
+@EnableJpaRepositories(entityManagerFactoryRef="entityManagerFactory")
 public class PersistConfiguration {
 
 	@Bean
@@ -36,7 +46,7 @@ public class PersistConfiguration {
 		return hibernateJpaVendorAdapter;
 	}
 	
-	@Bean
+	@Bean("entityManagerFactory")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(dataSource);
@@ -44,4 +54,14 @@ public class PersistConfiguration {
 		factoryBean.setPackagesToScan("spring.jpa.domain");
 		return factoryBean;
 	}
+	
+	@Bean
+	public JpaTransactionManager transactionManager(EntityManagerFactory factory) {
+		return new JpaTransactionManager(factory);
+	}
+	@Bean
+	public BeanPostProcessor persistenceExceptionTranslation() {
+		return new PersistenceExceptionTranslationPostProcessor();
+	}
+	
 }
