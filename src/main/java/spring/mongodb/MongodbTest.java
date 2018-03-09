@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=MongoConfig.class)
+@ContextConfiguration(classes=MongoConfig2.class)
 public class MongodbTest {
 
 	@Autowired
@@ -17,7 +17,7 @@ public class MongodbTest {
 	
 	@Test
 	public void testSave() {
-		Order order = new Order("1","小明", "VIP");
+		Order order = new Order("3","小和", "Common");
 		mongoOperation.save(order, "Order");
 	}
 }
