@@ -3,9 +3,10 @@ package spring.mongodb;
 
 import javax.persistence.Id;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection="Order")
 public class Order {
 
 	@Id
@@ -51,5 +52,8 @@ public class Order {
 		this.type = type;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
 }

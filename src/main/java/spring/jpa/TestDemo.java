@@ -49,8 +49,10 @@ public class TestDemo {
 	
 	@Test
 	public void findByName() {
-		List<Users> findByName = jpaRepository.findByName("t35qgdsa");
-		System.out.println(findByName);
+//		List<Users> findByName = jpaRepository.findByName("t35qgdsa");
+//		System.out.println(findByName);
+		Users users = jpaRepository.findASingleUsersByName("t35qgdsa");
+		System.out.println(users);
 	}
 	
 	@Test

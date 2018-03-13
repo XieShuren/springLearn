@@ -21,5 +21,5 @@ public class MongoConfig2 extends AbstractMongoConfiguration{
 		// TODO Auto-generated method stub
 		return "test";
 	}
-
+	
 }
