@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.collect.Lists;
 
@@ -35,8 +36,8 @@ public class HomeController {
 	}
 
 
-	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String users(Model model) {
+	@RequestMapping(value="/list", method=RequestMethod.GET, produces="text/xml")
+	public @ResponseBody List<User> users(Model model) {
 		List<User> userList = repository.userList();
 		try {
 			Connection connection = repository.getTemplate().getDataSource().getConnection();
@@ -51,8 +52,9 @@ public class HomeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		model.addAttribute("beanList", userList);
-		return "view";
+//		model.addAttribute("beanList", userList);
+//		return "view";
+		return userList;
 	}
 	
 	@RequestMapping(value="/listWithIndex", method=RequestMethod.GET)

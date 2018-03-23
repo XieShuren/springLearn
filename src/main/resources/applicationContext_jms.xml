@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:jms="http://www.springframework.org/schema/jms"
+	xmlns:amq="http://activemq.apache.org/schema/core"
+	xsi:schemaLocation="http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
+		http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	<amq:connectionFactory id="connectionFactory" 
+		brokerURL="tcp://localhost:61616"></amq:connectionFactory>
+	<amq:queue id="testQueue" physicalName="xieshure.test.users"/>
+	<bean id="messageConvertor" class="org.springframework.jms.support.converter.MappingJackson2MessageConverter" p:typeIdPropertyName="beanType">
+		<property name="typeIdMappings">
+			<util:map>
+				<entry key="users" value="spring.jpa.domain.Users"></entry>
+			</util:map>
+		</property>
+	</bean>
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate" 
+		c:_-ref="connectionFactory" 
+		p:defaultDestination-ref="testQueue" 
+		p:messageConverter-ref="messageConvertor"></bean>
+	<bean id="usersHandle" class="spring.jms.receiver.UserHandler"></bean>
+	
+	 <bean id ="messageListenerAdapter" class= "org.springframework.jms.listener.adapter.MessageListenerAdapter" > 
+               <property name ="delegate"> 
+                  <bean class= "spring.jms.receiver.UserHandler" /> 
+              </property > 
+              <property name ="defaultListenerMethod" value= "print"/>
+              <property name="messageConverter" ref="messageConvertor"/>
+          </bean >
+     <bean id ="messageListenerAdapterContainer" class= "org.springframework.jms.listener.DefaultMessageListenerContainer" > 
+       <property name ="connectionFactory" ref= "connectionFactory" /> 
+       <property name ="destination" ref="testQueue" /> 
+       <property name ="messageListener" ref= "messageListenerAdapter" />  
+      </bean >  
+</beans>

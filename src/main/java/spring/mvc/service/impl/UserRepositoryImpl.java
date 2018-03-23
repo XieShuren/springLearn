@@ -10,7 +10,7 @@ import spring.mvc.service.UserRepository;
 @Service
 public class UserRepositoryImpl implements UserRepository{
 
-	@Autowired
+	@Autowired(required=false)
 	private JdbcTemplate jdbcTemplate;
 
 	private static final String INSERT = "insert into users(id,name,address,password) values(?,?,?,?)";

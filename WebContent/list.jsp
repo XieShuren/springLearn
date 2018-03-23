@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/home.css"/> 
 </head> 
 <body> 
-    <c:forEach items="${users}" var="bean">
+    <c:forEach items="${userList}" var="bean">
     	<p><c:out value="${bean.id}"></c:out>:<c:out value="${bean.name}"></c:out></p>
     </c:forEach>
       <form action='<%=request.getContextPath()%>/logout' method='POST'>

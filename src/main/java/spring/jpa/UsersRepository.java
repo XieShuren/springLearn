@@ -13,6 +13,7 @@ public interface UsersRepository extends JpaRepository<Users, Integer>,UpdateAdd
 	
 	Users findASingleUsersByName(String name);
 	
+	List<Users> findById(int id);
 	@Query("select u from Users u where u.password like '%dgew%'")
 	List<Users> findSomeSpecial();
 }
