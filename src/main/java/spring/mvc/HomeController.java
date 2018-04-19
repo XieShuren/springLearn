@@ -29,6 +29,19 @@ public class HomeController {
 	}
 	private UserRepository repository;
 	
+	private int dynamicId;
+	
+	
+	public int getDynamicId() {
+		return dynamicId;
+	}
+
+
+	public void setDynamicId(int dynamicId) {
+		this.dynamicId = dynamicId;
+	}
+
+
 	@Autowired
 	public HomeController(UserRepository repository) {
 		super();
@@ -67,6 +80,7 @@ public class HomeController {
 	@RequestMapping(value="/listWithId/{id}", method=RequestMethod.GET)
 	public String user(@PathVariable int id, Model model) {
 		List<User> userList = null;
+		this.dynamicId = id;
 		if (id > 0) {
 			String userName = id%2==0?"小偶":"小鸡";
 			userList = Lists.newArrayList(new User(id, userName));

@@ -1,10 +1,9 @@
 package spring.jms.sender;
 
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.ObjectMessage;
-import javax.jms.Session;
-import javax.jms.TextMessage;
+//import javax.jms.JMSException;
+//import javax.jms.Message;
+//import javax.jms.Session;
+//import javax.jms.TextMessage;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,26 +30,26 @@ public class SenderTest {
 		jmsOperation.convertAndSend(new Users(3, "erwr", "bgfed", "ntth"));
 	}
 	
-	@Test
-	public void sendV2() {
-		jmsOperation.send(new MessageCreator() {
-
-			@Override
-			public Message createMessage(Session session) throws JMSException {
-				ObjectMapper objectMapper = new ObjectMapper();
-				String writeValueAsString = null;
-				try {
-					writeValueAsString = objectMapper.writeValueAsString(new Users(1, "erwr", "bgfed", "ntth"));
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				}
-				TextMessage message = session.createTextMessage(writeValueAsString);
-				message.setStringProperty("beanType", "users");
-				return message;
-			}
-			
-		});
-	}
+//	@Test
+//	public void sendV2() {
+//		jmsOperation.send(new MessageCreator() {
+//
+//			@Override
+//			public Message createMessage(Session session) throws JMSException {
+//				ObjectMapper objectMapper = new ObjectMapper();
+//				String writeValueAsString = null;
+//				try {
+//					writeValueAsString = objectMapper.writeValueAsString(new Users(1, "erwr", "bgfed", "ntth"));
+//				} catch (JsonProcessingException e) {
+//					e.printStackTrace();
+//				}
+//				TextMessage message = session.createTextMessage(writeValueAsString);
+//				message.setStringProperty("beanType", "users");
+//				return message;
+//			}
+//			
+//		});
+//	}
 	
 	@Test
 	public void receive() {
