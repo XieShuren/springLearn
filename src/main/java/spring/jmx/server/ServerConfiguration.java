@@ -7,8 +7,6 @@ import org.springframework.jmx.export.annotation.AnnotationMBeanExporter;
 import org.springframework.jmx.support.ConnectorServerFactoryBean;
 import org.springframework.remoting.rmi.RmiRegistryFactoryBean;
 
-@Configuration
-@ComponentScan
 public class ServerConfiguration {
 
 //	@Bean
@@ -25,24 +23,24 @@ public class ServerConfiguration {
 //		return mBeanExporter;
 //	}
 	
-	@Bean
-	public AnnotationMBeanExporter annotationMBeanExporter() {
-	    return new AnnotationMBeanExporter();
-	}
-	
-	@Bean
-	public RmiRegistryFactoryBean rmiRegistryFB() {
-		RmiRegistryFactoryBean rmiRegistryFactoryBean = new RmiRegistryFactoryBean();
-		rmiRegistryFactoryBean.setPort(1099);
-		return rmiRegistryFactoryBean;
-	}
-	
-	@Bean
-	public ConnectorServerFactoryBean connectorServerFactory() {
-		ConnectorServerFactoryBean csfb = new ConnectorServerFactoryBean();
-		csfb.setServiceUrl("service:jmx:rmi:///jndi/rmi://192.168.0.140:1099/server");
-		return csfb;
-	}
+//	@Bean
+//	public AnnotationMBeanExporter annotationMBeanExporter() {
+//	    return new AnnotationMBeanExporter();
+//	}
+//	
+//	@Bean
+//	public RmiRegistryFactoryBean rmiRegistryFB() {
+//		RmiRegistryFactoryBean rmiRegistryFactoryBean = new RmiRegistryFactoryBean();
+//		rmiRegistryFactoryBean.setPort(1099);
+//		return rmiRegistryFactoryBean;
+//	}
+//	
+//	@Bean
+//	public ConnectorServerFactoryBean connectorServerFactory() {
+//		ConnectorServerFactoryBean csfb = new ConnectorServerFactoryBean();
+//		csfb.setServiceUrl("service:jmx:rmi:///jndi/rmi://192.168.0.140:1099/server");
+//		return csfb;
+//	}
 	
 	
 }

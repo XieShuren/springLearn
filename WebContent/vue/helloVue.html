@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="js/vue.js"></script>
+<body>
+<div id="app">
+  {{ message }}
+</div>
+<div id="app-2">
+  <span v-bind:title="message">
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+  </span>
+</div>
+
+<div id="app-3">
+	<p v-if="seen">现在你看到我了</p>
+</div>
+
+<div id="app-4">
+	<ol>
+		<li v-for="item in items">{{item.text}}</li>
+	</ol>
+</div>
+
+<div id="app-5">
+	<p>{{message}}</p>
+	<button v-on:click="reverseText">Reverse</button>
+</div>
+
+<div id="app-6">
+	<p>{{message}}</p>
+	<input v-model="message"/>
+</div>
+
+<div id="app-7">
+<ol>
+	<todo-item></todo-item>
+</ol>
+</div>
+
+<div id="app-8">
+<ol>
+	<food-item v-for="item in foodItems" v-bind:food="item" v-bind:key="item.index"></food-item>
+</ol>
+</div>
+
+</body>
+<script type="text/javascript">
+var app = new Vue({
+	  el: '#app',
+	  data: {
+	    message: 'Hello Vue!'
+	  }
+	})
+var app2 = new Vue({
+	  el: '#app-2',
+	  data: {
+	    message: '页面加载于 ' + new Date().toLocaleString()
+	  }
+	})
+
+var app3 = new Vue({
+	el: '#app-3',
+	data:{
+		seen:true
+	}
+})
+
+var app4 = new Vue({
+	el: '#app-4',
+	data:{
+		items:[
+			{text:'理想'},
+			{text:'是个'},
+			{text:'哈哈'}
+		]
+	}
+})
+
+var app5 = new Vue({
+	el: '#app-5',
+	data:{
+		message:"现在终于轮到我了"
+	},
+	methods:{
+		reverseText:function() {
+			this.message = this.message.split('').reverse().join('');
+		}
+	}
+})
+
+var app6 = new Vue({
+	el: '#app-6',
+	data:{
+		message:'666'
+	}
+})
+//定义名为 todo-item 的新组件
+Vue.component('todo-item', {
+  template: '<li>这是个待办项</li>'
+})
+
+Vue.component('food-item',{
+	props:["food"],
+	template: '<li>{{food.name}}</li>'
+})
+var app7 = new Vue({
+	el:"#app-7"
+})
+
+var app8 = new Vue({
+	el:"#app-8",
+	data: {
+		foodItems:[
+			{name:"可乐"},
+			{name:"鸡翅"}
+		]
+	}
+})
+</script>
+</html>

@@ -22,26 +22,19 @@ excludeFilters= {@Filter(type=FilterType.ANNOTATION, value=EnableWebMvc.class)})
 @Import(PersistConfiguration.class)
 public class RootConfig {
 
-	@Bean
-	public MBeanExporter mBeanExporter(HomeController homeController) {
-		MBeanExporter mBeanExporter = new MBeanExporter();
-		Map<String, Object> beans = new HashMap<String, Object>();
-		beans.put("xieshuren:name=HomeController", beans);
-		mBeanExporter.setBeans(beans);
-		return mBeanExporter;
-	}
-	
-	@Bean
-	public RmiRegistryFactoryBean rmiRegistryFB() {
-		RmiRegistryFactoryBean rmiRegistryFactoryBean = new RmiRegistryFactoryBean();
-		rmiRegistryFactoryBean.setPort(1099);
-		return rmiRegistryFactoryBean;
-	}
-	
-	@Bean
-	public ConnectorServerFactoryBean connectorServerFactory() {
-		ConnectorServerFactoryBean csfb = new ConnectorServerFactoryBean();
-		csfb.setServiceUrl("service:jmx:rmi:///jndi/rmi://localhost:1099/server");
-		return csfb;
-	}
+//	@Bean
+//	public MBeanExporter mBeanExporter(HomeController homeController) {
+//		MBeanExporter mBeanExporter = new MBeanExporter();
+//		Map<String, Object> beans = new HashMap<String, Object>();
+//		beans.put("xieshuren:name=HomeController", beans);
+//		mBeanExporter.setBeans(beans);
+//		return mBeanExporter;
+//	}
+//	
+//	@Bean
+//	public RmiRegistryFactoryBean rmiRegistryFB() {
+//		RmiRegistryFactoryBean rmiRegistryFactoryBean = new RmiRegistryFactoryBean();
+//		rmiRegistryFactoryBean.setPort(1099);
+//		return rmiRegistryFactoryBean;
+//	}
 }

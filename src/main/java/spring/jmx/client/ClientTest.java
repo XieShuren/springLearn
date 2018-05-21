@@ -24,61 +24,61 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(classes=JmxClientConfiguration.class)
 public class ClientTest {
 
-	@Autowired
-	private MBeanServerConnection serverConnection;
-	
-	@Test
-	public void test1() {
-		try {
-			Integer mBeanCount = serverConnection.getMBeanCount();
-			System.out.println(mBeanCount);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	public void test2() {
-		try {
-			Object attribute = serverConnection.getAttribute(new ObjectName("xieshuren:name=HelloService"), "Length");
-			System.out.println(attribute);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	public void test3() {
-		try {
-			serverConnection.setAttribute(new ObjectName("xieshuren:name=HelloService"),new Attribute("Length", "nihao shijie"));
-		} catch (InstanceNotFoundException | AttributeNotFoundException | InvalidAttributeValueException
-				| MalformedObjectNameException | MBeanException | ReflectionException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	public void test4() {
-		try {
-			MBeanInfo mBeanInfo = serverConnection.getMBeanInfo(new ObjectName("xieshuren:name=HelloService"));
-			System.out.println(mBeanInfo);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	public void test5() {
-		try {
-			serverConnection.invoke(new ObjectName("xieshuren:name=HelloService"), "doSomething", null, null);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	@Autowired
+//	private MBeanServerConnection serverConnection;
+//	
+//	@Test
+//	public void test1() {
+//		try {
+//			Integer mBeanCount = serverConnection.getMBeanCount();
+//			System.out.println(mBeanCount);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	@Test
+//	public void test2() {
+//		try {
+//			Object attribute = serverConnection.getAttribute(new ObjectName("xieshuren:name=HelloService"), "Length");
+//			System.out.println(attribute);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	@Test
+//	public void test3() {
+//		try {
+//			serverConnection.setAttribute(new ObjectName("xieshuren:name=HelloService"),new Attribute("Length", "nihao shijie"));
+//		} catch (InstanceNotFoundException | AttributeNotFoundException | InvalidAttributeValueException
+//				| MalformedObjectNameException | MBeanException | ReflectionException | IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	@Test
+//	public void test4() {
+//		try {
+//			MBeanInfo mBeanInfo = serverConnection.getMBeanInfo(new ObjectName("xieshuren:name=HelloService"));
+//			System.out.println(mBeanInfo);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	@Test
+//	public void test5() {
+//		try {
+//			serverConnection.invoke(new ObjectName("xieshuren:name=HelloService"), "doSomething", null, null);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	
 }

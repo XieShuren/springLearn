@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="js/vue.js"></script>
+<body>
+	<div id="example-1">
+		<button v-on:click="counter += 1">Add 1</button>
+		<p>按钮被按下{{counter}}次</p>
+	</div>
+	
+	<div id="example-2">
+		<input placeholder="edit me" v-model="userName"/>
+		<p>content:{{userName}}</p>
+	</div>
+</body>
+<script type="text/javascript">
+var example1 = new Vue({
+	el:"#example-1",
+	data:{
+		counter:0
+	}
+})
+
+var example2 = new Vue({
+	el:"#example-2",
+	data:{
+		userName:''
+	}
+})
+</script>
+</html>

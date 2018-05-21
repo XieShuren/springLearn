@@ -6,24 +6,22 @@ import org.springframework.stereotype.Component;
 
 import com.sun.org.glassfish.gmbal.ManagedOperation;
 
-@Component
-@ManagedResource("xieshuren:name=HelloService")
 public class HelloService {
 
-	private String length = "hello world";
-
-	@ManagedAttribute
-	public String getLength() {
-		return length;
-	}
-	
-	//@ManagedAttribute
-	public void setLength(String length) {
-		this.length = length;
-	}
-
-	@ManagedOperation
-	public void doSomething() {
-		System.out.println("测试测试");
-	}
+//	private String length = "hello world";
+//
+//	@ManagedAttribute
+//	public String getLength() {
+//		return length;
+//	}
+//	
+//	//@ManagedAttribute
+//	public void setLength(String length) {
+//		this.length = length;
+//	}
+//
+//	@ManagedOperation
+//	public void doSomething() {
+//		System.out.println("测试测试");
+//	}
 }
